@@ -22,7 +22,8 @@ const createTables=async()=>{
    id SERIAL PRIMARY KEY,
    title TEXT NOT NULL,
    description TEXT ,
-    user_id INTEGER REFERENCES users(id)
+    user_id INTEGER REFERENCES users(id),
+    done BOOLEAN DEFAULT FALSE
    )`;
 
    await client.query(createTodos);

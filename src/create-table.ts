@@ -2,7 +2,7 @@
 
 //call the client connection
 
-const {newClient} =require('./utils');
+import {newClient} from "./utils";
 
 const createTables=async()=>{
     const client=await newClient();

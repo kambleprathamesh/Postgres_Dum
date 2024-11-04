@@ -19,3 +19,28 @@
 
 
 const {newClient} =require("./utils");
+
+
+export const createEntries=async()=>{
+
+    //call the cleint
+    const client=await newClient();
+
+    //create
+    const insertuserText=`INSERT INTO users(email,password)VALUES($1,$2) RETURNING id`
+    const values=['prathmeshk1990@gmail.com','1234599'];
+
+    //make a query call
+    const response=await client.query(insertuserText,values)
+
+
+
+
+    const insertTodoText=`INSERT INTO todos(title,description,user_id)VALUES($1,$2,$3)`
+    const todoValue=['ABCD','DESC1',response.rows[0].id]
+
+    await client.query(insertTodoText,todoValue);
+    console.log("DATA INSERTED SUCCESFULLY!")
+}
+
+createEntries()
